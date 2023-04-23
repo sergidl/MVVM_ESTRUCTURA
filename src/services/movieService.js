@@ -33,7 +33,8 @@ export const searchMovies = (query) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const filteredMovies = MOVIES.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()));
-      if (filteredMovies>0) {
+      console.log(filteredMovies);
+      if (filteredMovies.length>0) {
         const searchResults = new Search(filteredMovies);
         resolve(searchResults.results);
       }
