@@ -33,8 +33,13 @@ export const searchMovies = (query) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const filteredMovies = MOVIES.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase()));
-      const searchResults = new Search(filteredMovies);
-      resolve(searchResults.results);
+      if (filteredMovies>0) {
+        const searchResults = new Search(filteredMovies);
+        resolve(searchResults.results);
+      }
+      else {
+        reject("Pel·licula no trobada");
+      }
     }, 1000 + Math.random() * 2000);
   });
 };
@@ -46,7 +51,7 @@ export const getMovieDetails = (id) => {
       if (movie) {
         resolve(movie);
       } else {
-        reject("Movie not found");
+        reject("Pel·licula no trobada");
       }
     }, 1000 + Math.random() * 2000);
   });

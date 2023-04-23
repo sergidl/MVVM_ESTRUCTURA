@@ -18,8 +18,7 @@ const Main = () => {
             setSearchResults(results);
             setError(null);
         } catch (e) {
-            console.log(e)
-            setError("Error searching movies.");
+            setError(e);
         }
         setIsLoading(false);
     };
@@ -32,7 +31,7 @@ const Main = () => {
             setMovie(movie);
             setError(null);
         } catch (e) {
-            setError("Error getting movie details.");
+            setError(e);
         }
         setIsLoading(false);
     };
@@ -42,9 +41,7 @@ const Main = () => {
             <h1>Movies Search</h1>
             <SearchView onSearch={handleSearch} isLoading={isLoading} />
             {error && <div className="error">{error}</div>}
-            {/* {console.log(searchResults.length)} */}
             {searchResults.length > 0 ?
-                // console.log(searchResults)
                 <SearchViewModel results={searchResults} onMovieDetails={handleMovieDetails} />
                 : ""}
             <MovieDetailsView />
